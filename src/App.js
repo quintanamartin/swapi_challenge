@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from '../src/assets/robot.png';
 import './App.css';
+import { getFilms, ENDPOINT } from './api';
+
+getFilms(ENDPOINT);
 
 function App() {
   return (
