@@ -1,5 +1,4 @@
 import React from 'react';
-import swlogo from '../../assets/logo.svg';
 
 export const Header = () => {
   return (
