@@ -14,13 +14,13 @@ export const Search = ({ search, saveSearch, userInput }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
     if (name.trim() === '') {
       saveError(true);
       return;
+    } else {
+      saveError(false);
+      userInput(true);
     }
-    saveError(false);
-    userInput(true);
   };
 
   return (
@@ -39,6 +39,7 @@ export const Search = ({ search, saveSearch, userInput }) => {
             ></input>
           </label>
         </div>
+
         <div>
           <button
             type="submit"

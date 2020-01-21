@@ -8,6 +8,7 @@ function App() {
   const [search, saveSearch] = useState({
     name: ''
   });
+
   const { name } = search;
 
   const [input, userInput] = useState(false);
@@ -15,11 +16,12 @@ function App() {
 
   useEffect(() => {
     const requestAPI = async () => {
-      if (search) {
+      if (input) {
         const url = `https://swapi.co/api/people/?search=${name}`;
         const res = await fetch(url);
         const response = await res.json();
-        saveNameList(response);
+        const result = await response.results[0];
+        saveNameList(result);
       }
     };
     requestAPI();
