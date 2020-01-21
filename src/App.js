@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import { CHARACTERS, getCharacters } from './api';
 import { Header } from './components/Header/header';
-import { Dropdown } from './components/Dropdown/dropdown';
+import { Search } from './components/Search/search';
 import { FilmList } from './components/List/film-list';
 
-const personajes = getCharacters(CHARACTERS);
-console.log(personajes);
-
 function App() {
+  const [search, saveSearch] = useState({
+    name: ''
+  });
+  const { name } = search;
+
+  const [input, userInput] = useState(false);
+  const [nameList, saveNameList] = useState({});
+
+  useEffect(() => {
+    const requestAPI = async () => {
+      if (search) {
+        const url = `https://swapi.co/api/people/?search=${name}`;
+        const res = await fetch(url);
+        const response = await res.json();
+        saveNameList(response);
+      }
+    };
+    requestAPI();
+  }, [input]);
+
   return (
     <div className="text-center container">
       <Header />
-      <Dropdown />
-      <FilmList />
+      <Search search={search} saveSearch={saveSearch} userInput={userInput} />
+      <FilmList nameList={nameList} />
     </div>
   );
 }
