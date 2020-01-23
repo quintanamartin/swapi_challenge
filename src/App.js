@@ -20,7 +20,7 @@ function App() {
         const url = `https://swapi.co/api/people/?search=${name}`;
         const res = await fetch(url);
         const response = await res.json();
-        const result = await response.results[0];
+        const result = response.results[0];
         saveNameList(result);
       }
     };
