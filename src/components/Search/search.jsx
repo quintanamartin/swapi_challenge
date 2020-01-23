@@ -1,41 +1,36 @@
 import React, { useState } from 'react';
 
-export const Search = ({ search, saveSearch, userInput }) => {
-  const [error, saveError] = useState(false);
-
-  const { name } = search;
-
-  const handleChange = e => {
-    saveSearch({
-      ...search,
-      [e.target.name]: e.target.value
-    });
-  };
-
+export const Search = props => {
+  const [firstName, setFirstName] = useState([]);
+  const [secondName, setSecondName] = useState([]);
   const handleSubmit = e => {
     e.preventDefault();
-    if (name.trim() === '') {
-      saveError(true);
-      return;
-    } else {
-      saveError(false);
-      userInput(true);
-    }
+    const firstUrl = `https://swapi.co/api/people/?search=${firstName}`;
+    const secondUrl = `https://swapi.co/api/people/?search=${secondName}`;
+
+    props.handleSearch(firstUrl, secondUrl);
   };
 
   return (
-    <div className="h-64 text-center items-center">
+    <div className="h-48 text-center items-center">
       <form action="" onSubmit={handleSubmit}>
-        {error ? (
-          <p className="text-yellow-500 font-bold">El campo es obligatorio</p>
-        ) : null}
         <div>
-          <label className="inline-block align-middle ">
+          <label className="mx-8 inline-block align-middle ">
             <input
               type="text"
               name="name"
-              value={name}
-              onChange={handleChange}
+              required
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
+            ></input>
+          </label>
+          <label className="mx-8 inline-block align-middle ">
+            <input
+              type="text"
+              name="name"
+              required
+              value={secondName}
+              onChange={e => setSecondName(e.target.value)}
             ></input>
           </label>
         </div>
@@ -44,7 +39,7 @@ export const Search = ({ search, saveSearch, userInput }) => {
           <button
             type="submit"
             value="Seach character"
-            className="text-yellow-500 font-bold"
+            className=" bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mt-5 border-4 border-yellow-500"
           >
             Search
           </button>

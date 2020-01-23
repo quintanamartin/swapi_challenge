@@ -1,18 +1,18 @@
 import React from 'react';
 
-export const FilmList = ({ nameList }) => {
-  const { name, films = [] } = nameList;
+export const FilmList = ({ searchResults }) => {
+  const names = searchResults.map(item => item.name);
+  const films = searchResults.map(item => item.films);
 
-  films.forEach(item => {
-    fetch(item)
-      .then(res => res.json())
-      .then(results => results.title)
-      .then(lala => console.log(lala));
-  });
+  console.log(films);
 
   return (
     <div className="text-yellow-500 font-bold">
-      <h2> Personaje: {name}</h2>
+      <h2> Personajes elegidos: </h2>
+      <ul>
+        <li>{names[0]}</li>
+        <li>{names[1]}</li>
+      </ul>
       <h2>Peliculas en las que participa:</h2>
       <ul>
         <li></li>

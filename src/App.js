@@ -5,33 +5,32 @@ import { Search } from './components/Search/search';
 import { FilmList } from './components/List/film-list';
 
 function App() {
-  const [search, saveSearch] = useState({
-    name: ''
-  });
+  //Set State
+  const [searchResults, setSearchResults] = useState([]);
 
-  const { name } = search;
+  //API CALL
+  const fetchData = url => {
+    return fetch(url)
+      .then(res => res.json())
+      .then(json => json.results[0])
+      .catch(error => console.error('Error:', error));
+  };
 
-  const [input, userInput] = useState(false);
-  const [nameList, saveNameList] = useState({});
+  const handleSearch = (firstUrl, secondUrl) => {
+    processData(firstUrl, secondUrl);
+  };
 
-  useEffect(() => {
-    const requestAPI = async () => {
-      if (input) {
-        const url = `https://swapi.co/api/people/?search=${name}`;
-        const res = await fetch(url);
-        const response = await res.json();
-        const result = response.results[0];
-        saveNameList(result);
-      }
-    };
-    requestAPI();
-  }, [input]);
+  const processData = async (firstUrl, secondUrl) => {
+    const firstSearch = await fetchData(firstUrl);
+    const secondSearch = await fetchData(secondUrl);
+    setSearchResults([firstSearch, secondSearch]);
+  };
 
   return (
     <div className="text-center container">
       <Header />
-      <Search search={search} saveSearch={saveSearch} userInput={userInput} />
-      <FilmList nameList={nameList} />
+      <Search handleSearch={handleSearch} />
+      <FilmList searchResults={searchResults} />
     </div>
   );
 }
