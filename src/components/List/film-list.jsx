@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export const FilmList = ({ searchResults }) => {
-  const [movies: [], saveMovies] = useState([]);
+  const [movies, saveMovies] = useState([]);
   const names = searchResults.map(item => item.name);
   const films = searchResults.map(item => item.films);
   let allFilms = Array.from(new Set(films.map(JSON.stringify)), JSON.parse);
