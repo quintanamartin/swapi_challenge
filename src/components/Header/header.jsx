@@ -5,7 +5,7 @@ export const Header = () => {
     <header className="flex  justify-center">
       <img
         src="https://fontmeme.com/permalink/200116/6eb0147ce91ef21bed55cdf6ce4d71ad.png"
-        class=" my-4"
+        className=" my-4"
       />
     </header>
   );
