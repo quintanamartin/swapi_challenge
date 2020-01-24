@@ -12,13 +12,14 @@ export const Search = props => {
   };
 
   return (
-    <div className="h-48 text-center items-center">
+    <div className="h-32 text-center items-center mt-10">
       <form action="" onSubmit={handleSubmit}>
         <div>
           <label className="mx-8 inline-block align-middle ">
             <input
               type="text"
               name="name"
+              placeholder="Search a character"
               required
               value={firstName}
               onChange={e => setFirstName(e.target.value)}
@@ -28,6 +29,7 @@ export const Search = props => {
             <input
               type="text"
               name="name"
+              placeholder="Search a character"
               required
               value={secondName}
               onChange={e => setSecondName(e.target.value)}
@@ -39,7 +41,7 @@ export const Search = props => {
           <button
             type="submit"
             value="Seach character"
-            className=" bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mt-5 border-4 border-yellow-500"
+            className="bg-transparent font-semibold text-yellow-500 py-2 px-4 border  rounded border-yellow-500 mt-5"
           >
             Search
           </button>

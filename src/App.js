@@ -24,10 +24,11 @@ function App() {
     const firstSearch = await fetchData(firstUrl);
     const secondSearch = await fetchData(secondUrl);
     setSearchResults([firstSearch, secondSearch]);
+    return;
   };
 
   return (
-    <div className="text-center container">
+    <div className="text-center container h-screen w-screen bg-black">
       <Header />
       <Search handleSearch={handleSearch} />
       <FilmList searchResults={searchResults} />
