@@ -10,8 +10,22 @@ export const FilmList = ({ searchResults }) => {
       (acc, item) => [...acc, ...item.films],
       []
     );
-    let allFilms = new Set(films);
-    const promises = [...allFilms].map(url =>
+    const duplicateFilms = films
+      .map(film => {
+        return {
+          count: 1,
+          film: film
+        };
+      })
+      .reduce((a, b) => {
+        a[b.film] = (a[b.film] || 0) + b.count;
+        return a;
+      }, {});
+    const duplicates = Object.keys(duplicateFilms).filter(
+      first => duplicateFilms[first] > 1
+    );
+    console.log(duplicates);
+    const promises = [...duplicates].map(url =>
       fetch(url).then(res => res.json())
     );
     Promise.all(promises).then(results => {
