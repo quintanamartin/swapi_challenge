@@ -7,8 +7,11 @@ export const Search = props => {
     e.preventDefault();
     const firstUrl = `https://swapi.co/api/people/?search=${firstName}`;
     const secondUrl = `https://swapi.co/api/people/?search=${secondName}`;
-
-    props.handleSearch(firstUrl, secondUrl);
+    if (firstName.trim() === '' || secondName.trim() === '') {
+      alert('Need both names');
+    } else {
+      props.handleSearch(firstUrl, secondUrl);
+    }
   };
 
   return (
