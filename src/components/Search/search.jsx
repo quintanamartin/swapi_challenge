@@ -22,7 +22,7 @@ export const Search = props => {
             <input
               type="text"
               name="name"
-              placeholder="Search a character"
+              placeholder="Buscar personaje"
               required
               value={firstName}
               onChange={e => setFirstName(e.target.value)}
@@ -32,7 +32,7 @@ export const Search = props => {
             <input
               type="text"
               name="name"
-              placeholder="Search a character"
+              placeholder="Buscar personaje"
               required
               value={secondName}
               onChange={e => setSecondName(e.target.value)}
@@ -43,10 +43,10 @@ export const Search = props => {
         <div>
           <button
             type="submit"
-            value="Seach character"
+            value="Buscar"
             className="bg-transparent font-semibold text-yellow-500 py-2 px-4 border  rounded border-yellow-500 mt-5"
           >
-            Search
+            Buscar
           </button>
         </div>
       </form>

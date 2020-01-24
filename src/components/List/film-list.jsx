@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 export const FilmList = ({ searchResults }) => {
   const [movies, saveMovies] = useState([]);
+
   const names = searchResults.map(item => item.name);
 
   useEffect(() => {
